@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates
 WORKDIR /opt/
 COPY --from=builder /opt/anisette-v3-server /opt/anisette-v3-server
 
+# Create default provisioning folder
+RUN mkdir -p mkdir -p /opt/anisette-v3/provisioning
+
 # Setup rootless user which works with the volume mount
 RUN useradd -ms /bin/bash Alcoholic \
  && mkdir /home/Alcoholic/.config/anisette-v3/lib/ -p \
